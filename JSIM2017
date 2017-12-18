@@ -1,0 +1,259 @@
+using System;
+
+namespace GullSimulator2017
+{
+	class MainClass
+	{
+		public static void Main(string[] args)
+		{
+			Random rnd = new Random();
+
+			int diePlayer;
+			int dieGull;
+			string playerChoice, gullChoice;
+			int healthPlayer = 3;
+			int healthGull = 3;
+			int smackTalk = rnd.Next(1, 6);
+			Console.WriteLine("**************************************\n" +
+							  "WELCOME TO JOHNATHAN SIMLUATOR 2017!!!\n" +
+							  "*****PREPARE TO GET WRECKED*****\n\n" +
+							  "*****Press Any Key to Continue*****\n\n\n");
+
+			Console.ReadKey();
+
+			while (healthPlayer > 0 && healthGull > 0)
+			{
+				//Johnathan Attack Phase, Player Defense Phase
+
+				dieGull = rnd.Next(1, 7);
+
+				Console.WriteLine("JOHNATHAN ROLLS A " + dieGull + "\n\nDO YOU WISH TO 1: DEFEND OR 2: EVADE?\n");
+
+				playerChoice = Console.ReadLine();
+
+
+				while (playerChoice != "1" && playerChoice != "2")
+				{
+					Console.WriteLine("\n\nTYPE 1 FOR DEFEND OR 2 FOR EVADE YOU SILLY GOOSE!");
+					playerChoice = Console.ReadLine();
+
+					if (playerChoice == "1" || playerChoice == "2") 
+					{
+						break;
+					}
+
+				}
+
+
+
+				if (playerChoice == "1")
+				{
+					diePlayer = rnd.Next(1, 7);
+
+					Console.WriteLine("\n\nYOUR FEEBLE ATTEMPTS TO DEFEND YOURSELF RESULT IN A ROLL OF " + diePlayer + "\n\nPRESS ANY KEY\n\n");
+					Console.ReadKey();
+
+					if (diePlayer < dieGull)
+					{
+						healthPlayer = healthPlayer - (dieGull - diePlayer);
+
+						Console.WriteLine("\n\nJOHNATHAN SMACKS THE SHIT OUT OF YOU FOR " + (dieGull - diePlayer) + " DAMAGE!\n\n");
+						Console.WriteLine("\nYOUR REMAINING HEALTH IS: " + healthPlayer);
+						Console.WriteLine("\nJOHNATHAN IS STILL SITTING PRETTY WITH " + healthGull + " HEALTH!\n\nPRESS ANY KEY\n\n");
+						Console.ReadKey();
+							
+						if (healthPlayer <= 0) 
+						{
+							break;
+						}
+					}
+					if (diePlayer >= dieGull)
+					{
+						healthPlayer = healthPlayer - 1;
+						Console.WriteLine("\n\nJOHNATHAN STILL GRAZES YOUR PATHETIC ASS FOR 1 DAMAGE! YOUR INEVITABLE DEMISE IS AT HAND!\n\n");
+						Console.WriteLine("\nYOUR REMAINING HEALTH IS: " + healthPlayer);
+						Console.WriteLine("\nJOHNATHAN IS STILL SITTING PRETTY WITH " + healthGull + " HEALTH!\n\nPRESS ANY KEY\n\n");
+						Console.ReadKey();
+
+						if (healthPlayer <= 0) 
+						{
+							break;
+						}
+
+
+					}
+				}
+				if (playerChoice == "2")
+				{
+					diePlayer = rnd.Next(1, 7);
+
+					Console.WriteLine("\n\nYOU MAKE THE FOOLISH DECISION TO TRY AND EVADE JOHNATHAN AND ARE PUNISHED WITH A ROLL OF " + diePlayer + "\n\nPRESS ANY KEY\n\n");
+					Console.ReadKey();
+
+					if (diePlayer <= dieGull)
+					{
+						healthPlayer = (healthPlayer - dieGull);
+
+						Console.WriteLine("\n\nJOHNATHAN SEES THROUGH YOUR ATTEMPT AND BEATS YOU TO THE TUNE OF " + dieGull + " DAMAGE!\n\n");
+						Console.WriteLine("\nYOUR REMAINING HEALTH IS: " + healthPlayer);
+						Console.WriteLine("\nJOHNATHAN IS STILL SITTING PRETTY WITH " + healthGull + " HEALTH!\n\nPRESS ANY KEY\n\n");
+						Console.ReadKey();
+
+						if (healthPlayer <= 0) 
+						{
+							break;
+						}
+					}
+					if (diePlayer > dieGull)
+					{
+						Console.WriteLine("\n\nJOHNATHAN DECIDES TO PROLONG THE INEVITABLE...FOR NOW\n\n");
+						Console.WriteLine("\nYOUR REMAINING HEALTH IS: " + healthPlayer);
+						Console.WriteLine("\nJOHNATHAN IS STILL SITTING PRETTY WITH " + healthGull + " HEALTH!\n\nPRESS ANY KEY\n\n");
+						Console.ReadKey();
+					}
+				}
+		
+				//Player Attack Phase, Johnathan Defense Phase
+
+				diePlayer = rnd.Next(1, 7);
+				Console.WriteLine("YOU ROLL A " + diePlayer + " AND RESPECTFULLY WAIT FOR JOHNATHAN TO REACT!\n\nPRESS ANY KEY\n\n");
+				Console.ReadKey();
+
+				if (healthGull == 0) 
+				{
+					gullChoice = "2";
+				}
+				else if (diePlayer > 4)
+				{
+					gullChoice = "1";
+				}
+				else if (diePlayer < 3)
+				{
+					gullChoice = "2";
+				}
+				else
+				{
+					gullChoice = Convert.ToString(rnd.Next(1, 3));
+				}
+
+				if (gullChoice == "1")
+				{
+					dieGull = rnd.Next(1, 7);
+
+					Console.WriteLine("\n\nJOHNATHAN STEELS HIMSELF FOR THE IMPACT OF YOUR ATTACK, ROLLING A  " + dieGull + "\n\nPRESS ANY KEY\n\n");
+					Console.ReadKey();
+
+					if (dieGull < diePlayer)
+					{
+						healthGull = healthGull - (diePlayer - dieGull);
+
+						Console.WriteLine("\n\nYOU SMACK THE SHIT OUT OF JOHNATHAN FOR " + (diePlayer - dieGull) + " DAMAGE!\n\n");
+						Console.WriteLine("\nYOUR REMAINING HEALTH IS: " + healthPlayer);
+						Console.WriteLine("\nJOHNATHAN IS STILL SITTING PRETTY WITH " + healthGull + " HEALTH!\n\nPRESS ANY KEY\n\n");
+						Console.ReadKey();
+						if (healthGull <= 0) 
+						{
+							break;
+						}
+					}
+					if (dieGull >= diePlayer)
+					{
+						healthGull = healthGull - 1;
+						Console.WriteLine("\n\nYOU GRAZE JOHNATHANS DOWNY PLUMAGE FOR 1 DAMAGE! IT FILLS YOU WITH DETERMINATION!\n\n");
+						Console.WriteLine("\nYOUR REMAINING HEALTH IS: " + healthPlayer);
+						Console.WriteLine("\nJOHNATHAN IS STILL SITTING PRETTY WITH " + healthGull + " HEALTH!\n\nPRESS ANY KEY\n\n");
+						Console.ReadKey();
+						if (healthGull <= 0) 
+						{
+							break;
+						}
+					}
+				}
+				if (gullChoice == "2")
+				{
+					dieGull = rnd.Next(1, 7);
+
+					Console.WriteLine("\n\nJOHNATHAN SUMMONS ALL OF HIS ANIMAL INSTINCTS TO EVADE YOUR ASSAULT, ROLLING A " + dieGull + "\n\nPRESS ANY KEY\n\n");
+					Console.ReadKey();
+
+					if (dieGull <= diePlayer)
+					{
+						healthGull = (healthGull - diePlayer);
+
+						Console.WriteLine("\n\nYOU PUMMEL JOHNATHAN VIGOROUSLY AS HE FLAPS ABOUT, DEALING " + diePlayer + " DAMAGE!\n\n");
+						Console.WriteLine("\nYOUR REMAINING HEALTH IS: " + healthPlayer);
+						Console.WriteLine("\nJOHNATHAN IS STILL SITTING PRETTY WITH " + healthGull + " HEALTH!\n\nPRESS ANY KEY\n\n");
+						Console.ReadKey();
+							if (healthGull <= 0) 
+						{
+							break;
+						}
+					}
+					if (dieGull > diePlayer)
+					{
+						Console.WriteLine("\n\nYOU PATHETICALLY WHIFF YOUR ATTACK. JOHNATHAN'S SMUG EXPRESSION CUTS YOU DEEPLY.\n\n");
+						Console.WriteLine("\nYOUR REMAINING HEALTH IS: " + healthPlayer);
+						Console.WriteLine("\nJOHNATHAN IS STILL SITTING PRETTY WITH " + healthGull + " HEALTH!\n\nPRESS ANY KEY\n\n");
+						Console.ReadKey();
+					}
+				}
+			}
+			// J rolls attack die, player decides Eva or Def.  
+
+			// Eva - Player rolls die.  If player die roll less than or equal to J, player loses health 
+			// equal to J die roll.  If player die roll is greater than J, player loses no health.
+
+			// Def - Player rolls die.  If Player die roll is less than J die roll, player loses health based on
+			// difference between die rolls. If Player die roll is greater than or equal to J die roll, player loses 1
+			// health.
+
+			// Player rolls attack die.  J decides Eva or Def.
+
+			//J chooses Def. if player die roll is 5 or 6.  J chooses Eva. if player die roll is 1 of 2.
+			//On rolls of 3 or 4 Eva or Def will be randomly chosen.  
+
+			//System will repeat until either J or Player health is less than or equal to 0.
+
+
+
+			if (healthPlayer <= 0 && healthGull > 0)
+			{
+				switch (smackTalk)
+				{
+					case 1:
+						Console.WriteLine("\n\nJOHNATHAN JUST KICKED YOUR SHIT IN");
+						break;
+
+					case 2:
+						Console.WriteLine("\n\nOH WOW, YOU SUCK. THOUGH JOHNATHAN KNEW THAT ALREADY!");
+						break;
+
+					case 3:
+						Console.WriteLine("\n\nYOU JUST LOST TO A SEAGULL. THE NATURAL ORDER HAS BEEN RESTORED");
+						break;
+
+					case 4:
+						Console.WriteLine("\n\nMADA MADA DA NE.");
+						break;
+
+					case 5:
+						Console.WriteLine("\n\nJOHNATHAN SENDS HIS REGARDS, AND BY REGARDS I MEAN HE JUST SHIT-STOMPED YOU SON!");
+						break;
+
+					default:
+						Console.WriteLine("\n\nHAHAHAHA, YOU LOSE!");
+						break;
+
+				}
+			}
+			else
+			{
+				Console.WriteLine("\n\nYOU GOT LUCKY THIS TIME");
+			}
+
+			Console.WriteLine("\nPress Any Key to Exit");
+			Console.ReadKey();
+
+		}
+	}
+}
